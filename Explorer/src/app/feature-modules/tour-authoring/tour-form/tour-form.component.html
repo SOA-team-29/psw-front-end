@@ -19,11 +19,16 @@
 
     <mat-form-field>
       <mat-label>Difficulty Level</mat-label>
-      <mat-select formControlName="difficulytLevel">
+      <mat-select formControlName="difficultyLevel">
         <mat-option *ngFor="let level of difficultyLevels" [value]="level">{{
           level
         }}</mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Tags</mat-label>
+      <input matInput formControlName="tags" type="text" />
     </mat-form-field>
 <!--
     <mat-form-field>

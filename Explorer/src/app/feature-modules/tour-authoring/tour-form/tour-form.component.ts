@@ -36,30 +36,43 @@ export class TourFormComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.tourForm.reset();
     if (this.shouldEdit) {
-      this.tourForm.patchValue(this.tour);
+     // this.tourForm.patchValue(this.tour);
+     this.patchTourForm();
     }
+  }
+
+  patchTourForm(): void {
+    const { name, description, status, difficultyLevel, tags } = this.tour;
+    this.tourForm.patchValue({
+      name,
+      description,
+      status,
+      difficultyLevel,
+      tags: tags.join(', ') 
+    });
   }
 
   tourForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     status: new FormControl('', [Validators.required]),
-    difficulytLevel: new FormControl('', [Validators.required]),
-    price: new FormControl(0, [Validators.required] )
+    difficultyLevel: new FormControl('', [Validators.required]),
+    tags: new FormControl('')
   });
 
   ngOnInit(): void {}
 
   addTour(): void {
     console.log(this.tourForm.value);
+    const tagsValue = this.tourForm.value.tags || '';
     const tour: Tour = {
       name: this.tourForm.value.name || '',
       description: this.tourForm.value.description || '',
       status: Status.Draft,
-      difficultyLevel: this.tourForm.value.difficulytLevel as DifficultyLevel,
+      difficultyLevel: this.tourForm.value.difficultyLevel as DifficultyLevel,
       UserId: this.tokenStorage.getUserId(),
       price: 0,
-      tags: ['xzy', 'abc'],
+      tags: tagsValue.split(',').map(tag => tag.trim()),
       tourPoints: [],
       tourCharacteristics: [],
       tourReviews: [],

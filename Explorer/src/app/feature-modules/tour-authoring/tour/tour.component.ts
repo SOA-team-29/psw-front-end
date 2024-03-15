@@ -63,6 +63,7 @@ export class TourComponent implements OnInit {
     });
   }
 
+
   loadTours() {
     const userId = this.tokenStorage.getUserId();
 
