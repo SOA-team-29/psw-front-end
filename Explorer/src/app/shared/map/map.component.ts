@@ -290,13 +290,14 @@ export class MapComponent implements AfterViewInit {
     const self = this;
     this.tourAuthoringService
       .getTourPointsByTourId(parseInt(this.tourId))
-      .subscribe((tourData: any) => {
-        const tourPoints = tourData.results;
+      .subscribe((tourData: TourPoint[]) => {
+        
+        const tourPoints = tourData;
 
-        const waypoints = tourPoints.map((point: any) =>
-          L.latLng(point.latitude, point.longitude)
-        );
-
+        const waypoints = tourPoints
+        .filter((point: TourPoint) => point.latitude !== undefined && point.longitude !== undefined)
+        .map((point: TourPoint) => L.latLng(point.latitude!, point.longitude!));
+      
         const transportMode = this.service.getTransportMode();
         console.log(transportMode);
 

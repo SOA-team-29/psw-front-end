@@ -119,8 +119,8 @@ export class TourAuthoringService {
     );
   }
 
-  getTourPointsByTourId(tourId: number): Observable<TourPoint> {
-    return this.http.get<TourPoint>(
+  getTourPointsByTourId(tourId: number): Observable<TourPoint []> {
+    return this.http.get<TourPoint []>(
       environment.apiHost + `administration/tourPoint/${tourId}`
     );
   }
