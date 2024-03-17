@@ -32,7 +32,7 @@ export class TourBundleCreateComponent {
   })
   getAllTours(){
 
-    this.tourAuthoringService.getAllTours().subscribe({
+    this.tourAuthoringService.seeAllTours().subscribe({
       next:(response: PagedResults<Tour>)=>{
         this.tours=response.results
         console.log('Turee', this.tours)

@@ -228,9 +228,9 @@ export class TourAuthoringService {
 
 
 
-  getAllTours(): Observable<PagedResults<Tour>> {
+  seeAllTours(): Observable<PagedResults<Tour>> {
     return this.http.get<PagedResults<Tour>>(
-      environment.apiHost + 'administration/tour/allTours'
+      environment.apiHost + 'administration/tour/seeAllTours'
     );
   }
   createTourBundle(tourBundle: TourBundle){
