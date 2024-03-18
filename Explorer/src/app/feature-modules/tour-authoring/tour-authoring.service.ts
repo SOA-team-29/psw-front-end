@@ -167,7 +167,7 @@ export class TourAuthoringService {
   ): Observable<Tour> {
     console.log(tourId);
     return this.http.put<Tour>(
-      environment.apiHost + 'administration/tour/caracteristics/' + tourId,
+      environment.apiHost + 'administration/tour/characteristics/' + tourId,
       tourCharacteristic
     );
   }
