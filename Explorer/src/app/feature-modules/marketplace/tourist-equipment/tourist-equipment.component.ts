@@ -47,19 +47,44 @@ export class TouristEquipmentComponent implements OnInit {
     })
   }
   
-  onAddClicked(e:Equipment):void{
-    if (e.id !== undefined){
-      this.service.addToMyEquipment(this.loggedInUser, e.id).subscribe({
-        next:(result: TouristEquipment)=>{
-          this.tEquipment = result;
-          this.equipments.length = 0;
-          this.otherEquipment.length =0;
-          this.getAllEquipmentForTourist(this.tEquipment.equipment);
-        } 
-      })
+  onAddClicked(e: Equipment): void {
+    if (!e || e.id === undefined) {
+      console.error('Invalid equipment provided.');
+      return;
     }
+  
+    this.service.addToMyEquipment(this.loggedInUser, e.id).subscribe({
+      next: (result: TouristEquipment) => {
+        console.log('Server response:', result);
+        if (!result || !result.equipment) {
+          console.error('Invalid result returned from server.');
+          return;
+        } 
+      
     
+  
+        this.tEquipment = result;
+        console.log('Updated tourist equipment:', this.tEquipment.equipment);
+        
+        // Provera da li je lista opreme turiste prazna
+        if (!this.tEquipment.equipment || this.tEquipment.equipment.length === 0) {
+          console.warn('Tourist equipment list is empty.');
+        }
+  
+        // Ažuriranje listi opreme
+        this.equipments = [];
+        this.otherEquipment = [];
+        this.getAllEquipmentForTourist(this.tEquipment.equipment);
+      },
+      error: (error) => {
+        console.error('Error adding equipment:', error);
+      }
+    });
   }
+  
+  
+  
+  
 
   deleteEquipment(e:Equipment):void{
     if (e.id !== undefined){
@@ -97,7 +122,7 @@ export class TouristEquipmentComponent implements OnInit {
           this.tEquipment = result;
           this.equipmentIds = result.equipment || [];
           console.log("REz dobijen za ideve: " + result.equipment);
-          this.getAllEquipmentForTourist(this.equipmentIds);
+          this.getAllEquipmentForTourist(result.equipment);
         }
       },
       error: (err: any) => {
@@ -106,22 +131,29 @@ export class TouristEquipmentComponent implements OnInit {
     });
   }
   
+  
+  
   getAllEquipmentForTourist(ids: number[]): void {
     if (!Array.isArray(ids)) {
       console.log('IDs nisu definirani ili nisu niz.');
+      
       return;
     }
-  
-    console.log("Usao: " + ids);
+    console.log('IDs:', ids);
     this.service.getMyEquipment(ids).subscribe({
+      
       next: (result: Equipment[]) => {
+        
         this.equipments = result || [];
+        console.log('m:', this.equipments);
+        
+        // Ovde pozovite this.getOtherEquipment(ids)
+        this.getOtherEquipment(ids);
       },
       error: (error: any) => {
         console.log(error);
       }
     });
-    this.getOtherEquipment(ids);
   }
   
 
