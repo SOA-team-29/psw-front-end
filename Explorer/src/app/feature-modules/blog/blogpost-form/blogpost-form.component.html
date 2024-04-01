@@ -26,12 +26,7 @@
               placeholder="Enter image URLs (comma-separated)"
             />
         </mat-form-field>
-        <div *ngIf="shouldDisplayEquipment()">
-            <p>Equipment Checklist:</p>
-            <div *ngFor="let equipment of equipmentLIst; let i = index">
-              <mat-checkbox [formControlName]="i">{{ equipment.name }}</mat-checkbox>
-            </div>
-          </div>
+      
 
           
         <span >

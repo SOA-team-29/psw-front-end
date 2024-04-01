@@ -29,18 +29,15 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
   
   tour:Tour;
     tourId:number;
-    equipmentLIst:Equipment[]=[];
-    equipment:String[]=[];
+    
 
 
-  constructor(private a: AdministrationService,private equipmentService: TourEquipmentService,private formBuilder: FormBuilder,private tourService:TourAuthoringService,private service: BlogService, private tokenStorage: TokenStorage, private router: Router, private route: ActivatedRoute) { }
+  constructor(private a: AdministrationService,private formBuilder: FormBuilder,private tourService:TourAuthoringService,private service: BlogService, private tokenStorage: TokenStorage, private router: Router, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.tourId = params['id']; 
       console.log('ID ture:', this.tourId);
-      if(this.tourId !==0){
-        this.getTourEquipment(this.tourId);
-      }
+      
       
     });
   }
@@ -58,7 +55,7 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     imageURLs: new FormControl(''),
-    equipment: this.buildEquipmentChecklist() // Dodajte polje za opremu
+    
   })
 
 
@@ -75,7 +72,6 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
       id: 0,
       authorId: this.tokenStorage.getUserId() || 0,
       tourId:this.tourId,
-      authorUsername: null,
       title: this.blogPostForm.value.title || '',
       description: this.blogPostForm.value.description || '',
       creationDate: new Date(),
@@ -84,9 +80,8 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
       ratings: [],
       status: 'PUBLISHED'
     }
-    this.selectedEquipment.forEach(e => {
-      console.log("Opis " +e.description);
-    });
+    
+ 
     this.service.addBlogPost(blogPost).subscribe({
       next: (_) => {
         this.blogPostsUpdated.emit();
@@ -149,7 +144,6 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
         id: this.blogPost.id,
         authorId: this.blogPost.authorId,
         tourId:0,
-        authorUsername: this.blogPost.authorUsername,
         title: this.blogPostForm.value.title || '',
         description: this.blogPostForm.value.description || '',
         creationDate: new Date(),
@@ -181,7 +175,7 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
       id: this.blogPost.id,
       authorId: this.blogPost.authorId,
       tourId:0,
-      authorUsername: this.blogPost.authorUsername,
+      
       title: this.blogPostForm.value.title || '',
       description: this.blogPostForm.value.description || '',
       creationDate: this.blogPost.creationDate,
@@ -208,43 +202,8 @@ export class BlogpostFormComponent implements OnChanges,OnInit {
 
   
 
-  shouldDisplayEquipment(): boolean {
-    return this.equipmentLIst && this.equipmentLIst.length > 0; // Vraća true ako postoji oprema
-  }
 
-  getTourEquipment(tourId: number) {
-    this.a.getEquipment().subscribe({
-      next: (result:PagedResults<Equipment>) => {
-        this.equipmentLIst = result.results; 
-        this.equipmentLIst.forEach(e => {
-          this.equipment.push(e.name);
-        });
-        console.log(this.equipmentLIst);
-        this.equipmentLIst.forEach(e => {
-          console.log(e);
-        });
-      this.blogPostForm.setControl('equipment', this.buildEquipmentChecklist());
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-  }
-  private buildEquipmentChecklist(): FormArray {
-    const controls = this.equipmentLIst.map(() => {
-      return this.formBuilder.control(false);
-    });
-    return this.formBuilder.array(controls);
-  }
   
-  get selectedEquipment(): Equipment[] {
-    const selectedIndexes = this.blogPostForm.value.equipment
-      .map((checked: boolean, index: number) => checked ? index : -1)
-      .filter((index: number) => index !== -1);
-  
-    const selectedEquipment = selectedIndexes.map((index: number) => this.equipmentLIst[index]);
-    return selectedEquipment;
-  }
 
 
     

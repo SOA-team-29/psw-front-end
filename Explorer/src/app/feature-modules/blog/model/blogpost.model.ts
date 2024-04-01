@@ -5,7 +5,6 @@ export interface BlogPost {
     id: number,
     authorId: number,
     tourId:number,
-    authorUsername: string | null,
     title: string,
     description: string,
     creationDate: Date,

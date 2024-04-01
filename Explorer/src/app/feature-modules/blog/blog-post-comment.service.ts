@@ -21,10 +21,10 @@ export class BlogPostCommentService {
   }
 
   updateComment(comment: BlogPostComment): Observable<BlogPostComment> {
-    return this.http.put<BlogPostComment>(environment.apiHost + 'blogPostComment/' + comment.id, comment);
+    return this.http.put<BlogPostComment>(environment.apiHost + 'blogPostComment/' + comment.blogId, comment);
   }
   deleteComment(comment: BlogPostComment): Observable<BlogPostComment> {
-    return this.http.delete<BlogPostComment>(environment.apiHost + 'blogPostComment/' + comment.id);
+    return this.http.delete<BlogPostComment>(environment.apiHost + 'blogPostComment/' + comment.blogId);
 
   }
 }
