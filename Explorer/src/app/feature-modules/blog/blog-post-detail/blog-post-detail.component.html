@@ -60,7 +60,8 @@
       
       <div class="comment" *ngFor="let comment of post.comments">
         <div class="comment-text">
-          <p>{{ comment.text }}</p>
+          <p>{{ comment.text}}</p>
+       
         </div>
         <div class="comment-metadata">
           <p>
@@ -77,6 +78,7 @@
             <button class="delete-button" (click)="deleteComment(comment.userId, comment.creationTime)" mat-icon-button>
               <mat-icon>delete</mat-icon>
             </button>
+            
           </div>
         </div>
       </div>
