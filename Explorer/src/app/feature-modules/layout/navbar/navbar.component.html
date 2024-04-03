@@ -158,14 +158,14 @@
       >
         Visual gallery
       </button>
-
-<!--        <div *ngIf="user && ((user.role === 'tourist' && isLevelTen) || user.role === 'administrator')" class="dd">-->
-<!--          <button raised-button [routerLink]="['encounters']" class="nbutton">Encounters <i class="fa fa-caret-down"></i></button>-->
-<!--          <div class="ddc">-->
-<!--              <a href="encounters">Manage encounters</a>-->
-<!--              <a *ngIf="user && user.role === 'tourist'" href="encounterMap">Encounter map</a>-->
-<!--          </div>-->
-<!--      </div>-->
+      
+      <div *ngIf="user && ((user.role === 'tourist' ) || user.role === 'administrator')" class="dd">
+            <button raised-button [routerLink]="['encounters']" class="nbutton">Encounters <i class="fa fa-caret-down"></i></button>
+          <div class="ddc">
+              <a href="encounters">Manage encounters</a>
+              <a *ngIf="user && user.role === 'tourist'" href="encounterMap">Encounter map</a>
+          </div>
+      </div>
 
 
       <div *ngIf="user && user.role === 'administrator'" class="dd">
