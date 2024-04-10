@@ -38,7 +38,7 @@ export class RegistrationComponent {
     if (this.registrationForm.valid) {
       this.authService.register(registration).subscribe({
         next: () => {
-          this.openSnackBar('Registration successful! Check your email for the confirmation link.');
+          this.openSnackBar('Registration successful!');
           this.router.navigate(['/login']);
         },
         error: () => {
