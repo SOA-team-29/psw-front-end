@@ -1,5 +1,5 @@
 export interface SocialEncounter {
-    encounterId: number,
+    encounterId: string,
     name: string,
     description: string,
     xpPoints: number,
@@ -7,7 +7,7 @@ export interface SocialEncounter {
     type: string,
     latitude: number,
     longitude: number,
-    id: number,
+    id: any,
     touristsRequiredForCompletion: number,
     distanceTreshold: number,
     touristIDs:  number[] | null,

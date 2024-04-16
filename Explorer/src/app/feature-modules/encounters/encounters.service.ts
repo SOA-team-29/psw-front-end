@@ -51,9 +51,14 @@ export class EncountersService {
   updateHiddenLocationEncounter(encounter: HiddenLocationEncounter): Observable<HiddenLocationEncounter>{
     return this.http.put<HiddenLocationEncounter>(environment.apiHost + 'encounters/hiddenLocation', encounter);
   }
-
+/*
   deleteEncounter(encounter: Encounter): Observable<Encounter>{
-    return this.http.delete<Encounter>(environment.apiHost + 'encounters/' + encounter.id);
+    return this.http.delete<Encounter>(environment.apiHost + 'encounters/' + encounter.id.toString());
+  }*/
+  deleteEncounter(encounter: Encounter): Observable<void> {
+    const url = `${environment.apiHost}encounters/${encounter.id}`;
+    
+    return this.http.delete<void>(url);
   }
 
   getByUser(userId: number): Observable<EncounterExecution>{

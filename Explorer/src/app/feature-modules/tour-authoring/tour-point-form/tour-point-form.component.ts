@@ -238,7 +238,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
 
     if(this.isSocial){
       const socialEncounter = {
-        encounterId: 0,
+        encounterId: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -246,7 +246,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        id: 0,
+        id: "0",
         touristsRequiredForCompletion: this.encounterForm.value.touristsRequiredForCompletion || 1,
         distanceTreshold: this.encounterForm.value.distanceTreshold || 200,
         touristIDs: [],
@@ -259,7 +259,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       this.encounterService.addSocialEncounter(socialEncounter).subscribe({
         next: (_) => {
           const tourKeyPointEncounter: TourKeyPointEncounter = {
-            encounterId: socialEncounter.id,
+            encounterId: socialEncounter.id.toString(),
             keyPointId: this.tempTourPoint.id || 0,
             isMandatory: this.encounterForm.value.includeCheckbox ?  this.encounterForm.value.includeCheckbox : false
           };
@@ -278,7 +278,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
 
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -286,7 +286,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        encounterId: 0,
+        encounterId: "0",
         imageURL: this.encounterForm.value.imageURL || '',
         imageLatitude: 0,
         imageLongitude:  0,
@@ -300,7 +300,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       this.encounterService.addHiddenLocationEncounter(hiddenLocationEncounter).subscribe({
         next: (_) => {
           const tourKeyPointEncounter: TourKeyPointEncounter = {
-            encounterId: hiddenLocationEncounter.id,
+            encounterId: hiddenLocationEncounter.id.toString(),
             keyPointId: this.tempTourPoint.id || 0,
             isMandatory: this.encounterForm.value.includeCheckbox ?  this.encounterForm.value.includeCheckbox : false
           };
@@ -318,7 +318,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       this.showPopup = false;
     }else{
       const encounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -335,7 +335,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       this.encounterService.addEncounter(encounter).subscribe({
         next: (_) => {
           const tourKeyPointEncounter: TourKeyPointEncounter = {
-            encounterId: encounter.id,
+            encounterId: encounter.id.toString(),
             keyPointId: this.tempTourPoint.id || 0,
             isMandatory: this.encounterForm.value.includeCheckbox ?  this.encounterForm.value.includeCheckbox : false
           };

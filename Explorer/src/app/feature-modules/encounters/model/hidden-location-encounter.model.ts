@@ -1,5 +1,5 @@
 export interface HiddenLocationEncounter {
-    id: number,
+    id: any,
     name: string,
     description: string,
     xpPoints: number,
@@ -7,7 +7,7 @@ export interface HiddenLocationEncounter {
     type: string,
     latitude: number,
     longitude: number,
-    encounterId: number,
+    encounterId: string,
     imageURL: string,
     imageLatitude: number,
     imageLongitude: number,

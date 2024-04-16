@@ -1,6 +1,6 @@
 export interface ShortHiddenLocationEncounter {
-    id: number,
-    encounterId: number,
+    id: any,
+    encounterId: string,
     imageURL: string,
     imageLatitude: number,
     imageLongitude: number,

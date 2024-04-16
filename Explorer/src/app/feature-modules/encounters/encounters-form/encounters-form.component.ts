@@ -31,7 +31,7 @@ export class EncountersFormComponent implements OnChanges {
   shouldBeApproved: boolean = false;
   status: string = 'ACTIVE';
   inputSocialEncounter: SocialEncounter = {
-    encounterId: 0,
+    encounterId: "0",
     name: '',
     description: '',
     xpPoints: 0,
@@ -39,14 +39,14 @@ export class EncountersFormComponent implements OnChanges {
     type: 'SOCIAL',
     latitude: 0,
     longitude: 0,
-    id: 0,
+    id: "0",
     touristsRequiredForCompletion: 1,
     distanceTreshold: 200,
     touristIDs:  [],
     shouldBeApproved: this.shouldBeApproved
   };
   inputHiddenLocationEncounter: HiddenLocationEncounter = {
-    id: 0,
+    id: "0",
     name: '',
     description: '',
     xpPoints: 0,
@@ -54,7 +54,7 @@ export class EncountersFormComponent implements OnChanges {
     type: 'LOCATION',
     latitude: 0,
     longitude: 0,
-    encounterId: 0,
+    encounterId: "0",
     imageURL: '',
     imageLatitude: 0,
     imageLongitude: 0,
@@ -81,7 +81,7 @@ export class EncountersFormComponent implements OnChanges {
         next: (result: PagedResults<ShortSocialEncounter>) => {
           var socialEncounters = result.results;
           const shortSocialEncounter = socialEncounters.find(
-            (social) => social.encounterId === this.encounter.id
+            (social) => social.encounterId === this.encounter.id.toString()
           );
           if(shortSocialEncounter){
             this.inputSocialEncounter.name = this.encounter.name;
@@ -105,7 +105,7 @@ export class EncountersFormComponent implements OnChanges {
         next: (result: PagedResults<ShortHiddenLocationEncounter>) => {
           var hiddenLocationEncounters = result.results;
           const shortHiddenLocationEncounter = hiddenLocationEncounters.find(
-            (hidden) => hidden.encounterId === this.encounter.id
+            (hidden) => hidden.encounterId === this.encounter.id.toString()
           );
           if(shortHiddenLocationEncounter){
             this.inputHiddenLocationEncounter.name = this.encounter.name;
@@ -115,7 +115,7 @@ export class EncountersFormComponent implements OnChanges {
             this.inputHiddenLocationEncounter.distanceTreshold = shortHiddenLocationEncounter.distanceTreshold;
             this.inputHiddenLocationEncounter.imageURL = shortHiddenLocationEncounter.imageURL;
           }else{
-            console.log('Cant find social encounter');
+            console.log('Cant find location encounter');
           }
           this.encounterForm.reset();
           if(this.shouldEdit){
@@ -147,7 +147,7 @@ export class EncountersFormComponent implements OnChanges {
     
     if(this.isSocial){
       const socialEncounter = {
-        encounterId: 0,
+        encounterId: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -155,7 +155,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        id: 0,
+        id: "0",
         touristsRequiredForCompletion: this.encounterForm.value.touristsRequiredForCompletion || 1,
         distanceTreshold: this.encounterForm.value.distanceTreshold || 200,
         touristIDs: [],
@@ -174,7 +174,7 @@ export class EncountersFormComponent implements OnChanges {
 
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -182,7 +182,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        encounterId: 0,
+        encounterId: "0",
         imageURL: this.encounterForm.value.imageURL || '',
         imageLatitude: 0,
         imageLongitude:  0,
@@ -203,7 +203,7 @@ export class EncountersFormComponent implements OnChanges {
       });
     }else{
       const encounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -233,7 +233,7 @@ export class EncountersFormComponent implements OnChanges {
 
     if(this.isSocial){
       const socialEncounter = {
-        encounterId: 0,
+        encounterId: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -241,7 +241,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        id: 0,
+        id: "0",
         touristsRequiredForCompletion: this.encounterForm.value.touristsRequiredForCompletion || 1,
         distanceTreshold: this.encounterForm.value.distanceTreshold || 200,
         touristIDs: [],
@@ -260,7 +260,7 @@ export class EncountersFormComponent implements OnChanges {
 
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -268,7 +268,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        encounterId: 0,
+        encounterId: "0",
         imageURL: this.encounterForm.value.imageURL || '',
         imageLatitude: 0,
         imageLongitude:  0,
@@ -289,7 +289,7 @@ export class EncountersFormComponent implements OnChanges {
       });
     }else{
       const encounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -317,7 +317,7 @@ export class EncountersFormComponent implements OnChanges {
     
     if(this.isSocial){
       const socialEncounter = {
-        encounterId: this.encounter.id,
+        encounterId: this.encounter.id.toString(),
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -325,7 +325,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        id: 0,
+        id: "0",
         touristsRequiredForCompletion: this.encounterForm.value.touristsRequiredForCompletion || 1,
         distanceTreshold: this.encounterForm.value.distanceTreshold || 200,
         touristIDs: [] as number[],
@@ -339,11 +339,12 @@ export class EncountersFormComponent implements OnChanges {
         next: (result: PagedResults<ShortSocialEncounter>) => {
           var socialEncounters = result.results;
           const shortSocialEncounter = socialEncounters.find(
-            (social) => social.encounterId === this.encounter.id
+            (social) => social.encounterId.toString() === this.encounter.id.toString()
           );
           if(shortSocialEncounter){
-            socialEncounter.id = shortSocialEncounter!.id;
-            socialEncounter.touristIDs = shortSocialEncounter!.touristIDs as number[];
+            //socialEncounter.id = shortSocialEncounter!.id;
+            //socialEncounter.touristIDs = shortSocialEncounter!.touristIDs as number[];
+            socialEncounter.id = shortSocialEncounter.id.toString();
           }else{
             console.log('Cant find social encounter');
           }
@@ -357,7 +358,7 @@ export class EncountersFormComponent implements OnChanges {
       })
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -365,7 +366,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        encounterId: this.encounter.id,
+        encounterId: this.encounter.id.toString(),
         imageURL: this.encounterForm.value.imageURL || '',
         imageLatitude: 0,
         imageLongitude:  0,
@@ -382,10 +383,11 @@ export class EncountersFormComponent implements OnChanges {
         next: (result: PagedResults<ShortHiddenLocationEncounter>) => {
           var hiddenLocationEncounters = result.results;
           const shortHiddenLocationEncounter = hiddenLocationEncounters.find(
-            (hidden) => hidden.encounterId === this.encounter.id
+            (hidden) => hidden.encounterId.toString() === this.encounter.id.toString()
           );
           if(shortHiddenLocationEncounter){
-            hiddenLocationEncounter.id = shortHiddenLocationEncounter!.id;
+            
+            hiddenLocationEncounter.id = hiddenLocationEncounter.id.toString();
           }else{
             console.log('Cant find hidden location encounter');
           }
@@ -399,7 +401,7 @@ export class EncountersFormComponent implements OnChanges {
       })
     }else{
       const encounter = {
-        id: this.encounter.id,
+        id: this.encounter.id.toString(),
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -425,7 +427,7 @@ export class EncountersFormComponent implements OnChanges {
   updateEncounter(): void{
     if(this.isSocial){
       const socialEncounter = {
-        encounterId: this.encounter.id,
+        encounterId: this.encounter.id.toString(),
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -433,7 +435,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        id: 0,
+        id: "0",
         touristsRequiredForCompletion: this.encounterForm.value.touristsRequiredForCompletion || 1,
         distanceTreshold: this.encounterForm.value.distanceTreshold || 200,
         touristIDs: [] as number[],
@@ -447,11 +449,10 @@ export class EncountersFormComponent implements OnChanges {
         next: (result: PagedResults<ShortSocialEncounter>) => {
           var socialEncounters = result.results;
           const shortSocialEncounter = socialEncounters.find(
-            (social) => social.encounterId === this.encounter.id
+            (social) => social.encounterId.toString() === this.encounter.id.toString()
           );
           if(shortSocialEncounter){
-            socialEncounter.id = shortSocialEncounter!.id;
-            socialEncounter.touristIDs = shortSocialEncounter!.touristIDs as number[];
+            socialEncounter.id = shortSocialEncounter.id.toString();
           }else{
             console.log('Cant find social encounter');
           }
@@ -465,7 +466,7 @@ export class EncountersFormComponent implements OnChanges {
       })
     }else if(this.isLocation){
       const hiddenLocationEncounter = {
-        id: 0,
+        id: "0",
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,
@@ -473,7 +474,7 @@ export class EncountersFormComponent implements OnChanges {
         type: this.encounterForm.value.type || 'MISC',
         latitude: 0,
         longitude:  0,
-        encounterId: this.encounter.id,
+        encounterId: this.encounter.id.toString(),
         imageURL: this.encounterForm.value.imageURL || '',
         imageLatitude: 0,
         imageLongitude:  0,
@@ -490,10 +491,12 @@ export class EncountersFormComponent implements OnChanges {
         next: (result: PagedResults<ShortHiddenLocationEncounter>) => {
           var hiddenLocationEncounters = result.results;
           const shortHiddenLocationEncounter = hiddenLocationEncounters.find(
-            (hidden) => hidden.encounterId === this.encounter.id
+            (hidden) => hidden.encounterId.toString() === this.encounter.id.toString()
           );
           if(shortHiddenLocationEncounter){
-            hiddenLocationEncounter.id = shortHiddenLocationEncounter!.id;
+            
+            hiddenLocationEncounter.id = shortHiddenLocationEncounter.id.toString();
+            
           }else{
             console.log('Cant find hidden location encounter');
           }
@@ -506,7 +509,7 @@ export class EncountersFormComponent implements OnChanges {
       })
     }else{
       const encounter = {
-        id: this.encounter.id,
+        id: this.encounter.id.toString(),
         name: this.encounterForm.value.name || '',
         description: this.encounterForm.value.description || '',
         xpPoints: this.encounterForm.value.xpPoints || 0,

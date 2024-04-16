@@ -1,6 +1,6 @@
 export interface ShortSocialEncounter {
-    id: number,
-    encounterId: number,
+    id: any,
+    encounterId: string,
     touristsRequiredForCompletion: number,
     distanceTreshold: number,
     touristIDs:  number[] | null,

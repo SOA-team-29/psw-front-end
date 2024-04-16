@@ -22,6 +22,7 @@ export class EncountersPageComponent implements OnInit {
   Location: boolean = false;
   user: User | undefined;
   approved: boolean = false;
+  encounterIdint:number=0;
 
   constructor(private service: EncountersService, private authService: AuthService){ }
 
@@ -79,7 +80,8 @@ export class EncountersPageComponent implements OnInit {
     }
   }
 
-  onDeleteClicked(encounter: Encounter): void{
+  onDeleteClicked(encounter:Encounter): void{
+    
     this.service.deleteEncounter(encounter).subscribe({
       next: (_) => {
         this.getEncounters();
@@ -95,7 +97,7 @@ export class EncountersPageComponent implements OnInit {
   onArchiveClicked(encounter: Encounter): void{
 
     const updatedEncounter = {
-      id: encounter.id,
+      id: encounter.id.toString(),
       name: encounter.name,
       description: encounter.description,
       xpPoints: encounter.xpPoints,
